@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Projeto_de_Produtos_POO;
+
 
 namespace Projeto_de_Produtos_POO
 {
@@ -12,29 +12,18 @@ namespace Projeto_de_Produtos_POO
         public string NomeProduto { get; set; }
         public float Preco { get; set; }
         public DateTime DataCadastro { get; set; }
-        public Marca Marca { get; set; }
-        public Usuario CadastroPor { get; set; }
-        List<Produto> Produtos = new List<Produto>();
-
-        public Cadastrar(Produto _produto)
-        {
-            
+        public Marca Marca = new Marca();
+        public Usuario CadastradoPor { get; set; }
+        List<Produto> ListaProdutos = new List<Produto>();
+        public void Cadastrar()
+        {            
         }
         public void Listar()
-        {
-            foreach (var item in Produtos)
-            {
-                Console.WriteLine($"{Codigo}, {NomeProduto}, {DataCadastro}");
-                
-            }
-        }
-
-         public void Deletar(Produto _produto)
-        {
-            
-        }
-
-
+        {            
+        }        
+        public void Deletar()
+        {            
+        }        
 
 
 
