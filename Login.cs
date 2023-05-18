@@ -61,6 +61,8 @@ namespace Projeto_de_Produtos_POO
                 [5] - Listar marcas
                 [6] - Remover marcas
 
+                [7] - Dados do perfil
+
                 [0] - sair
 
                 ");
@@ -85,22 +87,137 @@ namespace Projeto_de_Produtos_POO
                         marca.Listar();
                         break;
                     case "6":
+                        Console.WriteLine($"Digite o código do produto que você quer remover");
+                        int cod = int.Parse(Console.ReadLine());                                               
+                        marca.Deletar(cod);
+                        break;
 
-                        marca.Deletar();
+                    case "7":
+
+                        string opcao2;
+                        do
+                        {
+                            Console.WriteLine(@$"
+                        Nome: {user.Nome}
+                        Email: {user.Email}
+                        Senha: ***** (digite 1 para visualizar a senha)
+                        Data de cadastro: {user.DataCadastro}
+
+                        Deseja apagar esse cadastro? s/n
+                        ");
+
+                            opcao2 = Console.ReadLine().ToLower();
+                            switch (opcao2)
+                            {
+                                case "1":
+                                    string opcao4;
+                                    Console.WriteLine(@$"
+                        Nome: {user.Nome}
+                        Email: {user.Email}
+                        Senha: {user.Senha}
+                        Data de cadastro: {user.DataCadastro}
+
+                        Deseja apagar esse cadastro? s/n
+                        ");
+                                    opcao4 = Console.ReadLine().ToLower();
+                                    switch (opcao4)
+                                    {
+                                        case "s":
+                                            this.Deslogar();
+                                            user.Deletar();
+                                            string opcao5;
+                                            Console.WriteLine($"Cadastro apagado! deseja criar outro cadastro? s/n (se você não realizar um cadastro não será possivel utilizar o programa)");
+                                            opcao5 = Console.ReadLine().ToLower();
+                                            switch (opcao5)
+                                            {
+                                                case "s":
+                                                    user.Cadastrar();
+                                                    break;
+                                                case "n":
+                                                    Console.WriteLine($"Fim do programa tenha um bom dia!");
+
+                                                    break;
+                                                default:
+                                                    Console.WriteLine($"Digite uma opção válida");
+
+                                                    break;
+                                            }
+                                            break;
+                                        case "n":
+                                            Console.WriteLine($"Ok cadastro mantido!");
+
+                                            break;
+                                        default:
+                                            Console.WriteLine($"Digite uma opção válida");
+
+                                            break;
+                                    }
+
+
+
+                                    break;
+                                case "s":
+                                    this.Deslogar();
+                                    user.Deletar();
+                                    string opcao3;
+                                    Console.WriteLine($"Cadastro apagado! deseja criar outro cadastro? s/n (se você não realizar um cadastro não será possivel utilizar o programa)");
+                                    opcao3 = Console.ReadLine().ToLower();
+                                    do
+                                    {
+                                        switch (opcao3)
+                                        {
+                                            case "s":
+                                                user.Cadastrar();
+                                                break;
+                                            case "n":
+                                                Console.WriteLine($"Fim do programa tenha um bom dia!");
+
+                                                break;
+                                            default:
+                                                Console.WriteLine($"Digite uma opção válida");
+
+                                                break;
+                                        }
+                                    } while (opcao3 != "n");
+
+
+
+                                    break;
+                                case "n":
+                                    Console.WriteLine($"Ok, cadastro mantido");
+
+                                    break;
+                                default:
+                                    Console.WriteLine($"Digite uma opção válida!");
+
+                                    break;
+                            }
+                        } while (opcao2 != "n");
                         break;
                     case "0":
                         Console.WriteLine($"Fim do programa! Digite sua senha novamente para poder deslogar da sua conta");
                         string senha = Console.ReadLine();
-                        if(senha == user.Senha)
+                        do
                         {
-                            
-                        }
+
+
+                            if (senha == user.Senha)
+                            {
+                                this.Deslogar();
+                                Console.WriteLine($"Deslogado! Tchauzinho!");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Senha invalida");
+
+                            }
+                        } while (senha != user.Senha);
 
 
                         break;
                     default:
-                        Console.WriteLine($"Digite uma conta ");
-                        
+                        Console.WriteLine($"Digite uma opção válida!");
+
                         break;
                 }
 

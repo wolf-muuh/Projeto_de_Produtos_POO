@@ -15,8 +15,11 @@ namespace Projeto_de_Produtos_POO
 
         public void Cadastrar()
         {
+            Console.WriteLine($"Digite seu nome");            
             this.Nome = Console.ReadLine();
+            Console.WriteLine($"Digite o seu email");            
             this.Email = Console.ReadLine();
+            Console.WriteLine($"Crie uma senha");            
             this.Senha = Console.ReadLine();
             this.DataCadastro = DateTime.Now;
         }
