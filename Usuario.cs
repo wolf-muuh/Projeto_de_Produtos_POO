@@ -15,6 +15,12 @@ namespace Projeto_de_Produtos_POO
 
         public void Cadastrar()
         {
+            Console.WriteLine(@$"
+            ---------------------------
+                Crie o seu cadastro
+            ---------------------------    
+            ");
+            
             Console.WriteLine($"Digite seu nome");            
             this.Nome = Console.ReadLine();
             Console.WriteLine($"Digite o seu email");            
@@ -29,7 +35,7 @@ namespace Projeto_de_Produtos_POO
             this.Nome = "";
             this.Email = "";
             this.Senha = "";
-            this.DataCadastro = DateTime.Parse("0000-00-00T00:00:00");
+            this.DataCadastro = DateTime.Parse("0000-00-00");
         }
 
     }

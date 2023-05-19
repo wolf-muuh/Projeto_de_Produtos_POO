@@ -26,19 +26,22 @@ namespace Projeto_de_Produtos_POO
         }
         public void Listar()
         {
+            DataCadastro = DateTime.Now;
             foreach (var item in listaMarcas)
             {
                 Console.WriteLine(@$"
                 Código: {this.Codigo}
                 Nome: {this.NomeMarca}
-                Data de cadastro: {DataCadastro.ToShortDateString}
+                Data de cadastro: {this.DataCadastro.ToShortDateString()}
                 ");
 
             }
         }
         public void Deletar(int cod)
-        {
+        {                    
+            
             Marca marcaDelete = listaMarcas.Find(m => m.Codigo == cod);
+
             listaMarcas.Remove(marcaDelete);
         }
 

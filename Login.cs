@@ -15,37 +15,55 @@ namespace Projeto_de_Produtos_POO
 
             if (Logado == true)
             {
-                GerarMenu();
+                GerarMenu(user);
             }
         }
         public void Logar(Usuario _usuario)
         {
-            Console.WriteLine($"Insira o seu email");
-            string emailDigitado = Console.ReadLine();
 
-            Console.WriteLine($"Insira a sua senha");
-            string senhaDigitada = Console.ReadLine();
-
-            if (emailDigitado == _usuario.Email && senhaDigitada == _usuario.Senha)
+            _usuario.Cadastrar();
+            string emailDigitado;
+            string senhaDigitada;
+            do
             {
-                this.Logado = true;
-                Console.WriteLine($"Login efetuado com sucesso!");
 
-            }
-            else
-            {
-                this.Logado = false;
-                Console.WriteLine($"Falha ao logar");
-            }
+
+
+                Console.WriteLine(@$"
+            ---------------------
+               Repita os dados 
+            para efetuar o login
+            ---------------------
+            ");
+
+
+                Console.WriteLine($"Insira o seu email");
+                emailDigitado = Console.ReadLine();
+
+                Console.WriteLine($"Insira a sua senha");
+                senhaDigitada = Console.ReadLine();
+
+                if (emailDigitado == _usuario.Email && senhaDigitada == _usuario.Senha)
+                {
+                    this.Logado = true;
+                    Console.WriteLine($"Login efetuado com sucesso!");
+
+                }
+                else
+                {
+                    this.Logado = false;
+                    Console.WriteLine($"Falha ao logar");
+                }
+            } while (emailDigitado != _usuario.Email && senhaDigitada != _usuario.Senha);
 
         }
         public void Deslogar()
         {
             this.Logado = false;
         }
-        public void GerarMenu()
+        public void GerarMenu(Usuario user)
         {
-            Usuario user = new Usuario();
+            
             Produto produto = new Produto();
             Marca marca = new Marca();
             string opcao;
@@ -78,7 +96,10 @@ namespace Projeto_de_Produtos_POO
                         produto.Listar();
                         break;
                     case "3":
-                        produto.Deletar();
+                        Console.WriteLine($"Digite o código do produto que você quer remover");
+                        int cod1 = int.Parse(Console.ReadLine());
+
+                        produto.Deletar(cod1);
                         break;
                     case "4":
                         marca.Cadastrar();
@@ -88,7 +109,7 @@ namespace Projeto_de_Produtos_POO
                         break;
                     case "6":
                         Console.WriteLine($"Digite o código do produto que você quer remover");
-                        int cod = int.Parse(Console.ReadLine());                                               
+                        int cod = int.Parse(Console.ReadLine());
                         marca.Deletar(cod);
                         break;
 
@@ -196,10 +217,10 @@ namespace Projeto_de_Produtos_POO
                         break;
                     case "0":
                         Console.WriteLine($"Fim do programa! Digite sua senha novamente para poder deslogar da sua conta");
-                        string senha = Console.ReadLine();
+                        string senha;
                         do
                         {
-
+                            senha = Console.ReadLine();
 
                             if (senha == user.Senha)
                             {
